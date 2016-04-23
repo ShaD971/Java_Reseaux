@@ -32,9 +32,7 @@ public class Browser extends JFrame{
         add(new JScrollPane(fxPanel));
         setVisible(true);
 
-        //pour mélanger des composants JavaFX et Swing
-        //les composants JavaFX doivent s'exécuter dans leur propre thread
-        //Ils ne s'exécutent pas dans l'EDT swing !
+
         fxRun = new FXRunnable(content);
         //Lance le thread dans un thread dédié à JavaFX
         Platform.runLater(fxRun);
@@ -46,9 +44,7 @@ public class Browser extends JFrame{
      * @param content
      */
     public void setContent(String content){
-        //pour la mise à jour de ce composant,
-        //vu qu'il cohabite avec Swing
-        //celle-ci DOIT se faire dans un thread JavaFX
+
         fxRun = new FXRunnable(content);
         Platform.runLater(fxRun);
     }

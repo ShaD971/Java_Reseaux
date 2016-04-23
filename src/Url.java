@@ -24,31 +24,30 @@ public class Url {
             System.out.println("Protocol : " + url.getProtocol());
 
             try {
-                //Nous nous connectons au site en question
+                //connectons au site
                 URLConnection urlConn = url.openConnection();
                 System.out.println(urlConn.getContentType());
 
                 String content = "", line = null;
-                //Nous récupérons un flux en retour de connexion
+                // flux en retour de connexion
                 BufferedReader buf = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-                //Nous stockons les informations retournées dans une chaîne de caractères
+
                 while((line = buf.readLine()) != null){
                     content += line + "\n";
                 }
 
-                //Nous instancions notre objet pour afficher le contenu
                 Browser  browser = new Browser("Navigateur",content);
 
-                //Et nous faisons une recherche sur ce même site
+
                 String result = makeSearch(siteWeb, "java");
 
-                //Nous mettons à jour notre page
+
                 browser.setContent(result);
 
-                //Et nous faisons une recherche sur ce même site
+
                 result = makeSearch(siteWeb, "java.net package & RMI");
 
-                //Nous mettons à jour notre page
+
                 browser.setContent(result);
 
             } catch (IOException e) {
